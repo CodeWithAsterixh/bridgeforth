@@ -85,6 +85,10 @@ export default function Intake() {
     const toastId = 'intake';
     toast.loading('Submitting intake...', { id: toastId });
     try {
+      if(typeof window === 'undefined') {
+      toast.error('Unable to submit — please try again later.', { id: toastId });
+      return;
+    };
       const res = await fetch(window.location.pathname, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

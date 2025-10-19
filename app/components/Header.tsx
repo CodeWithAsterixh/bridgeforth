@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { Button } from "./ui-tags";
 
 export default function Header() {
   return (
@@ -14,7 +15,7 @@ export default function Header() {
         </div>
         <div className="flex items-center gap-3">
           <a className="hidden md:inline-block text-sm text-gray-600" href="tel:(404)730-9818">(404) 730-9818</a>
-          <a href="/consultation" className="bg-accent text-white px-4 py-2 rounded-md text-sm">Book a Call</a>
+          <Link to="/consultation"><Button variant="primary" className="px-4 py-2 rounded-md text-sm">Book a Call</Button></Link>
         </div>
       </div>
     </header>
