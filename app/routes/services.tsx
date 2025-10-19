@@ -5,6 +5,9 @@ export function meta() {
   return [
     { title: 'Services - Bridgeforth' },
     { name: 'description', content: 'Private case management and partner referral services — see Private Pay and Medicaid Partner Pathway.' },
+    { property: 'og:title', content: 'Services | Bridgeforth' },
+    { property: 'og:description', content: 'Private case management and partner referral services — see Private Pay and Medicaid Partner Pathway.' },
+    { property: 'og:type', content: 'website' },
   ];
 }
 
@@ -20,7 +23,7 @@ export default function Services() {
 
       <section className="relative">
         <div className="h-[36vh] min-h-[220px] relative">
-          <img src="/images/serviceimage.webp" alt="Services" className="w-full h-full object-cover object-center" />
+          <img loading="lazy" src="/images/serviceimage.webp" alt="Services" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">

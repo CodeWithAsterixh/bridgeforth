@@ -14,7 +14,7 @@ export default function MedicaidPartner() {
 
       <section>
         <div className="h-[36vh] min-h-[220px] relative">
-          <img src="/images/MedicaidPartnerPathway.avif" alt="Medicaid Partner Pathway" className="w-full h-full object-cover object-center" />
+          <img loading="lazy" src="/images/MedicaidPartnerPathway.avif" alt="Medicaid Partner Pathway" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">

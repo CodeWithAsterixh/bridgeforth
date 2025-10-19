@@ -39,7 +39,7 @@ export async function action({ request }: { request: Request }) {
 
     const subject = `Partner referral from ${referrerName} (${agencyName})`;
     const text = `Agency: ${agencyName}\nReferrer: ${referrerName}\nClient: ${clientName}\nContact: ${contact}\nUrgency: ${urgency || 'not specified'}\n\nNotes:\n${notes || ''}`;
-    const resMail = await import('../../lib/sendMail').then((m) => m.sendMail({ subject, text }));
+    const resMail = await import('../../../lib/sendMail').then((m) => m.sendMail({ subject, text }));
     if (!resMail.ok) {
       return new Response(JSON.stringify({ ok: false, message: 'Failed to send email' }), { status: 500 });
     }

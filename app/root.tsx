@@ -35,8 +35,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <a href="#content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white p-2 rounded">Skip to content</a>
         <SeoLocalBusiness />
+        <div id="content">{children}</div>
         <Toaster richColors />
         <ScrollRestoration />
         <Scripts />

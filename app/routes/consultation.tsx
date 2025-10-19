@@ -8,6 +8,9 @@ export function meta() {
   return [
     { title: 'Consultation - Bridgeforth' },
     { name: 'description', content: 'Book a free 15-minute consultation with Bridgeforth to discuss care coordination and next steps.' },
+    { property: 'og:title', content: 'Book a Free 15-Minute Consultation | Bridgeforth' },
+    { property: 'og:description', content: 'Book a free 15-minute consultation with Bridgeforth to discuss care coordination and next steps.' },
+    { property: 'og:type', content: 'website' },
   ];
 }
 

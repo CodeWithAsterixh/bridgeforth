@@ -37,7 +37,7 @@ export async function action({ request }: { request: Request }) {
 
     const subject = `New intake from ${fullName}`;
     const text = `Name: ${fullName}\nContact: ${phoneOrEmail}\nPayer: ${payerType}\nLocation: ${location}\n\nNeeds:\n${needs || ''}`;
-    const resMail = await import('../lib/sendMail').then((m) => m.sendMail({ subject, text }));
+    const resMail = await import('../../lib/sendMail').then((m) => m.sendMail({ subject, text }));
     if (!resMail.ok) {
       return new Response(JSON.stringify({ ok: false, message: 'Failed to send email' }), { status: 500 });
     }
