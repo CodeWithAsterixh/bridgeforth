@@ -7,7 +7,7 @@ export default function Hero() {
 
   return (
     <section className="relative isolate">
-      <div className="h-[64vh] min-h-[500px] sm:min-h-[420px] relative">
+      <div className="h-[70vh] relative">
         <span className="absolute inset-0 z-0 pointer-events-none brightness-50">
           <img
             src="/hero-background.avif"
