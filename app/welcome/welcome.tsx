@@ -1,6 +1,6 @@
-import { Header, Hero, FeatureGrid, ReasonsSection, Footer, TrustBar, ValuePillars, ProcessSteps, CTABand } from '../../components';
-import TestimonialSlider from '../../components/TestimonialSlider';
-
+import { Header, Hero, FeatureGrid, ReasonsSection, Footer, TrustBar, ValuePillars, ProcessSteps, CTABand } from '../components';
+import TestimonialSlider from '../components/TestimonialSlider';
+console.log(CTABand)
 export function Welcome() {
   return (
     <>

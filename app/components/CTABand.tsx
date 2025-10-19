@@ -1,4 +1,4 @@
-export default function CTABand() {
+export function CTABand() {
   return (
     <section className="py-12 bg-[#2563eb] text-white">
       <div className="max-w-6xl mx-auto px-6 text-center">
@@ -11,3 +11,4 @@ export default function CTABand() {
     </section>
   );
 }
+export default CTABand;

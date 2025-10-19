@@ -1,4 +1,4 @@
-import { Header, Footer } from '../../../components';
+import { Header, Footer } from '../../components';
 import { useState } from 'react';
 import { z } from 'zod';
 import { toast } from 'sonner';

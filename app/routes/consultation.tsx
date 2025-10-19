@@ -1,4 +1,4 @@
-import { Header, Footer } from '../../components';
+import { Header, Footer } from '../components';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -11,7 +11,7 @@ export function meta() {
     { rel: 'canonical', href: 'https://bridgeforthcg.com/consultation' },
     { property: 'og:title', content: 'Book a Free 15-Minute Consultation | Bridgeforth' },
     { property: 'og:description', content: 'Book a free 15-minute consultation with Bridgeforth to discuss care coordination and next steps.' },
-    { property: 'og:image', content: '/hero-background.avif' },
+  { property: 'og:image', content: '/og/consultation-1200x630.svg' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ];

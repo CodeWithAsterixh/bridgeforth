@@ -1,4 +1,4 @@
-import { Header, Footer, CTABand } from '../../components';
+import { Header, Footer, CTABand } from '../components';
 import { Link } from 'react-router';
 
 export function meta() {
@@ -8,7 +8,7 @@ export function meta() {
     { rel: 'canonical', href: 'https://bridgeforthcg.com/services' },
     { property: 'og:title', content: 'Services | Bridgeforth' },
     { property: 'og:description', content: 'Private case management and partner referral services — explore Private Pay and the Medicaid Partner Pathway.' },
-    { property: 'og:image', content: '/serviceimage.webp' },
+  { property: 'og:image', content: '/og/services-1200x630.svg' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ];

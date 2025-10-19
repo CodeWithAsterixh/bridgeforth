@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { Toaster } from 'sonner';
-import SeoLocalBusiness from '../components/SeoLocalBusiness';
+import SeoLocalBusiness from './components/SeoLocalBusiness';
 
 import type { Route } from "./+types/root";
 import "./app.css";

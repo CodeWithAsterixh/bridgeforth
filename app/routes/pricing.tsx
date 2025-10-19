@@ -1,4 +1,4 @@
-import { Header, Footer } from 'components';
+import { Header, Footer } from '~/components';
 
 export function meta() {
   return [
@@ -7,7 +7,7 @@ export function meta() {
     { rel: 'canonical', href: 'https://bridgeforthcg.com/pricing' },
     { property: 'og:title', content: 'Pricing & Plans | Bridgeforth' },
     { property: 'og:description', content: 'Flexible pricing for clarity sessions, coordination, and full case management. We offer sliding-scale options.' },
-    { property: 'og:image', content: '/serviceimage.webp' },
+  { property: 'og:image', content: '/og/pricing-1200x630.svg' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ];
 }

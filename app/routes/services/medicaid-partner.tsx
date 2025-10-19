@@ -1,4 +1,4 @@
-import { Header, Footer, CTABand } from '../../../components';
+import { Header, Footer, CTABand } from '../../components';
 
 export function meta() {
   return [
@@ -7,7 +7,7 @@ export function meta() {
     { rel: 'canonical', href: 'https://bridgeforthcg.com/services/medicaid-partner' },
     { property: 'og:title', content: 'Medicaid Partner Pathway | Bridgeforth' },
     { property: 'og:description', content: 'A streamlined referral and coordination pathway for agencies; partner with Bridgeforth for timely intake and consistent updates.' },
-    { property: 'og:image', content: '/MedicaidPartnerPathway.avif' },
+  { property: 'og:image', content: '/og/medicaid-partner-1200x630.svg' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ];
 }

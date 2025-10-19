@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     { rel: 'canonical', href: 'https://bridgeforthcg.com' },
     { property: 'og:title', content: 'Bridgeforth Consulting Group' },
     { property: 'og:description', content: 'Bridgeforth Consulting Group helps families and agencies navigate Medicaid, transitions, and care coordination with clarity and compassion.' },
-    { property: 'og:image', content: '/hero-background.avif' },
+  { property: 'og:image', content: '/og/home-1200x630.svg' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ];
 }
