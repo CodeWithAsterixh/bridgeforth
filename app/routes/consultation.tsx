@@ -2,9 +2,13 @@ import { Header, Footer } from '../../components';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { sendMail } from '../../lib/sendMail';
 
 export function meta() {
-  return [{ title: 'Consultation - Bridgeforth' }];
+  return [
+    { title: 'Consultation - Bridgeforth' },
+    { name: 'description', content: 'Book a free 15-minute consultation with Bridgeforth to discuss care coordination and next steps.' },
+  ];
 }
 
 const phoneRegex = /^\+?[0-9 ()-.]{7,20}$/;
@@ -14,6 +18,8 @@ const ConsultationSchema = z.object({
     z.email('Please enter a valid email address'),
     z.string().regex(phoneRegex, 'Please enter a valid phone number'),
   ]),
+  business: z.string().optional(),
+  role: z.string().optional(),
   notes: z.string().max(1000).optional(),
 });
 
@@ -32,32 +38,12 @@ export async function action({ request }: { request: Request }) {
       return new Response(JSON.stringify({ ok: false, errors: fieldErrors }), { status: 400 });
     }
 
-    const { name, contact, notes } = parsed.data;
-
-    // Try to send email via nodemailer if SMTP env vars are set. Dynamically import nodemailer
-    if (process.env.SMTP_HOST) {
-      const nodemailer: any = await import('nodemailer');
-      const transporter: any = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT || 587),
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: process.env.SMTP_USER
-          ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
-          : undefined,
-      });
-
-      const mail = {
-        from: process.env.FROM_EMAIL || 'no-reply@bridgeforthcg.com',
-        to: process.env.TO_EMAIL || 'info@bridgeforthcg.com',
-        subject: `New consultation request from ${name}`,
-        text: `Name: ${name}\nContact: ${contact}\n\nNotes:\n${notes || ''}`,
-      };
-
-      await transporter.sendMail(mail);
-    } else {
-      // No SMTP configured — log the payload so maintainers can handle it
-      // eslint-disable-next-line no-console
-      console.log('Consultation request (no SMTP configured):', { name, contact, notes });
+    const { name, contact, business, role, notes } = parsed.data;
+    const subject = `Consultation request from ${name}`;
+    const text = `Name: ${name}\nContact: ${contact}\nBusiness: ${business || ''}\nRole: ${role || ''}\n\nNotes:\n${notes || ''}`;
+    const resMail = await sendMail({ subject, text });
+    if (!resMail.ok) {
+      return new Response(JSON.stringify({ ok: false, message: 'Failed to send email' }), { status: 500 });
     }
 
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
@@ -152,6 +138,12 @@ export default function Consultation() {
             <input disabled={loading} name="contact" value={form.contact} onChange={handleChange} className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none" />
             {errors.contact && <div className="text-red-600 text-xs mt-1">{errors.contact}</div>}
 
+            <label className="block text-sm mt-3">Business / Agency (optional)</label>
+            <input disabled={loading} name="business" value={(form as any).business || ''} onChange={handleChange} className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none" />
+
+            <label className="block text-sm mt-3">Your role (optional)</label>
+            <input disabled={loading} name="role" value={(form as any).role || ''} onChange={handleChange} className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none" />
+
             <label className="block text-sm mt-3">Brief notes</label>
             <textarea disabled={loading} name="notes" value={form.notes} onChange={handleChange} className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none" rows={4} />
             {errors.notes && <div className="text-red-600 text-xs mt-1">{errors.notes}</div>}
@@ -163,31 +155,49 @@ export default function Consultation() {
               </button>
             </div>
           </form>
-
           <div className="bg-gray-50 p-6 rounded">
-            <h3 className="font-semibold">What to expect</h3>
-            <div className="mt-4 space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 w-10 h-10 rounded-full bg-[#2563eb] text-white flex items-center justify-center">1</div>
-                <div>
-                  <h4 className="font-semibold">Quick discovery</h4>
-                  <p className="text-sm text-gray-600">A 15-minute call to understand your priorities and urgency.</p>
-                </div>
+            <h3 className="font-semibold">Schedule a call</h3>
+            <p className="text-sm text-gray-600 mt-2">Use our embedded scheduler below, or use the quick request form if you prefer.</p>
+
+            <div className="mt-4">
+              <div className="hidden md:block">
+                <iframe src="https://calendly.com/your-calendly/15-min" title="Book a 15-minute call" className="w-full h-96 border-0" />
               </div>
 
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 w-10 h-10 rounded-full bg-[#2563eb] text-white flex items-center justify-center">2</div>
-                <div>
-                  <h4 className="font-semibold">Clear plan</h4>
-                  <p className="text-sm text-gray-600">We recommend immediate next steps and potential costs.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 w-10 h-10 rounded-full bg-[#2563eb] text-white flex items-center justify-center">3</div>
-                <div>
-                  <h4 className="font-semibold">Coordination</h4>
-                  <p className="text-sm text-gray-600">If you proceed, we coordinate with providers and agencies on your behalf.</p>
+              <div className="md:hidden mt-4">
+                <div className="bg-white p-4 rounded shadow">
+                  <h4 className="font-semibold">Quick request</h4>
+                  <p className="text-sm text-gray-600 mt-2">We'll email you to confirm a time.</p>
+                  <form onSubmit={async (e) => {
+                    e.preventDefault();
+                    const el = e.target as HTMLFormElement;
+                    const formData = new FormData(el);
+                    const payload: any = Object.fromEntries(formData as any);
+                    if (!payload.name || !payload.contact) {
+                      toast.error('Please provide name and contact');
+                      return;
+                    }
+                    toast.loading('Sending request...',{id:'quick-request'});
+                    try {
+                      const res = await fetch(window.location.pathname, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                      if (res.ok) {
+                        toast.success('Request sent — we will contact you');
+                        el.reset();
+                        return;
+                      }
+                      toast.error('Unable to send request');
+                    } catch (err) {
+                      // eslint-disable-next-line no-console
+                      console.error(err);
+                      toast.error('Server error');
+                    }
+                  }}>
+                    <label className="block text-sm">Name</label>
+                    <input name="name" className="w-full border rounded p-2 mt-1" />
+                    <label className="block text-sm mt-2">Phone or email</label>
+                    <input name="contact" className="w-full border rounded p-2 mt-1" />
+                    <div className="mt-3"><button className="bg-blue-600 text-white px-4 py-2 rounded">Send request</button></div>
+                  </form>
                 </div>
               </div>
             </div>

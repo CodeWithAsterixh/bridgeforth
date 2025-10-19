@@ -2,7 +2,10 @@ import { Header, Footer, CTABand } from '../../components';
 import { Link } from 'react-router';
 
 export function meta() {
-  return [{ title: 'Services - Bridgeforth' }];
+  return [
+    { title: 'Services - Bridgeforth' },
+    { name: 'description', content: 'Private case management and partner referral services — see Private Pay and Medicaid Partner Pathway.' },
+  ];
 }
 
 export default function Services() {

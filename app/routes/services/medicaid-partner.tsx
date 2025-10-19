@@ -1,7 +1,10 @@
 import { Header, Footer, CTABand } from '../../../components';
 
 export function meta() {
-  return [{ title: 'Medicaid Partner Pathway - Bridgeforth' }];
+  return [
+    { title: 'Medicaid Partner Pathway - Bridgeforth' },
+    { name: 'description', content: 'A streamlined referral and coordination pathway for agencies; partner with Bridgeforth for timely intake and updates.' },
+  ];
 }
 
 export default function MedicaidPartner() {

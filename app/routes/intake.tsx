@@ -35,28 +35,11 @@ export async function action({ request }: { request: Request }) {
 
     const { fullName, phoneOrEmail, payerType, location, needs } = parsed.data;
 
-    if (process.env.SMTP_HOST) {
-      const nodemailer: any = await import('nodemailer');
-      const transporter: any = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT || 587),
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: process.env.SMTP_USER
-          ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
-          : undefined,
-      });
-
-      const mail = {
-        from: process.env.FROM_EMAIL || 'no-reply@bridgeforthcg.com',
-        to: process.env.TO_EMAIL || 'info@bridgeforthcg.com',
-        subject: `New intake from ${fullName}`,
-        text: `Name: ${fullName}\nContact: ${phoneOrEmail}\nPayer: ${payerType}\nLocation: ${location}\n\nNeeds:\n${needs || ''}`,
-      };
-
-      await transporter.sendMail(mail);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Intake submission (no SMTP):', { fullName, phoneOrEmail, payerType, location, needs });
+    const subject = `New intake from ${fullName}`;
+    const text = `Name: ${fullName}\nContact: ${phoneOrEmail}\nPayer: ${payerType}\nLocation: ${location}\n\nNeeds:\n${needs || ''}`;
+    const resMail = await import('../lib/sendMail').then((m) => m.sendMail({ subject, text }));
+    if (!resMail.ok) {
+      return new Response(JSON.stringify({ ok: false, message: 'Failed to send email' }), { status: 500 });
     }
 
     return new Response(JSON.stringify({ ok: true }), { status: 200 });

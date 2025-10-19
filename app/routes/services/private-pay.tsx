@@ -1,7 +1,10 @@
 import { Header, Footer, CTABand } from '../../../components';
 
 export function meta() {
-  return [{ title: 'Private Pay Services - Bridgeforth' }];
+  return [
+    { title: 'Private Pay Services - Bridgeforth' },
+    { name: 'description', content: 'Personalized private-pay case management: waiver navigation, placement, home-based supports, and monthly oversight.' },
+  ];
 }
 
 export default function PrivatePay() {

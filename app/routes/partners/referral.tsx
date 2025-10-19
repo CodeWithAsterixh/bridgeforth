@@ -37,28 +37,11 @@ export async function action({ request }: { request: Request }) {
 
     const { agencyName, referrerName, clientName, contact, urgency, notes } = parsed.data;
 
-    if (process.env.SMTP_HOST) {
-      const nodemailer: any = await import('nodemailer');
-      const transporter: any = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT || 587),
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: process.env.SMTP_USER
-          ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
-          : undefined,
-      });
-
-      const mail = {
-        from: process.env.FROM_EMAIL || 'no-reply@bridgeforthcg.com',
-        to: process.env.TO_EMAIL || 'info@bridgeforthcg.com',
-        subject: `Partner referral from ${referrerName} (${agencyName})`,
-        text: `Agency: ${agencyName}\nReferrer: ${referrerName}\nClient: ${clientName}\nContact: ${contact}\nUrgency: ${urgency || 'not specified'}\n\nNotes:\n${notes || ''}`,
-      };
-
-      await transporter.sendMail(mail);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Partner referral (no SMTP):', { agencyName, referrerName, clientName, contact, urgency, notes });
+    const subject = `Partner referral from ${referrerName} (${agencyName})`;
+    const text = `Agency: ${agencyName}\nReferrer: ${referrerName}\nClient: ${clientName}\nContact: ${contact}\nUrgency: ${urgency || 'not specified'}\n\nNotes:\n${notes || ''}`;
+    const resMail = await import('../../lib/sendMail').then((m) => m.sendMail({ subject, text }));
+    if (!resMail.ok) {
+      return new Response(JSON.stringify({ ok: false, message: 'Failed to send email' }), { status: 500 });
     }
 
     return new Response(JSON.stringify({ ok: true }), { status: 200 });

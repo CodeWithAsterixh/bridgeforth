@@ -7,14 +7,14 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <div className="text-primary font-bold text-xl">Bridgeforth</div>
           <nav className="hidden md:flex gap-6 text-sm text-gray-700">
-            <Link to="/">Home</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/consultation">Consultation</Link>
+            <Link to="/" aria-label="Home">Home</Link>
+            <Link to="/services" aria-label="Services">Services</Link>
+            <Link to="/consultation" aria-label="Consultation">Consultation</Link>
           </nav>
         </div>
         <div className="flex items-center gap-3">
           <a className="hidden md:inline-block text-sm text-gray-600" href="tel:(404)730-9818">(404) 730-9818</a>
-          <button className="bg-accent text-white px-4 py-2 rounded-md text-sm">Book a Call</button>
+          <a href="/consultation" className="bg-accent text-white px-4 py-2 rounded-md text-sm">Book a Call</a>
         </div>
       </div>
     </header>
