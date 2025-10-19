@@ -176,11 +176,11 @@ export default function TestimonialSlider({
                 }deg) translateZ(${radius}px)`,
               }}
             >
-              <div className="min-w-[260px] max-w-sm flex-shrink-0 text-left border border-gray-100 rounded-lg p-6 shadow-sm bg-white">
-                <blockquote className="text-gray-800 text-lg italic">
+              <div className="max-w-[70vw] sm:min-w-[260px] sm:max-w-sm flex-shrink-0 text-left border border-gray-100 rounded-lg p-6 shadow-sm bg-white">
+                <blockquote className="text-gray-800 text-base italic">
                   “{s.quote}”
                 </blockquote>
-                <div className="mt-3 text-sm text-gray-600">
+                <div className="mt-3 text-xs text-gray-600">
                   — {s.name}
                   {s.city ? `, ${s.city}` : ""}
                 </div>

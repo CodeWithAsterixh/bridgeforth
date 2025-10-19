@@ -6,13 +6,16 @@ export default function ValuePillars() {
   ];
 
   return (
-    <section className="py-12">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="py-14 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-5">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it) => (
-            <div key={it.title} className="bg-white rounded shadow p-6 text-center">
-              <h3 className="font-semibold text-[#1e3a8a]">{it.title}</h3>
-              <p className="text-sm text-gray-600 mt-2">{it.desc}</p>
+            <div
+              key={it.title}
+              className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center transition-transform duration-200 hover:scale-[1.02] hover:shadow-md"
+            >
+              <h3 className="font-semibold text-[#1e3a8a] text-lg sm:text-xl">{it.title}</h3>
+              <p className="text-gray-600 text-sm sm:text-base mt-2">{it.desc}</p>
             </div>
           ))}
         </div>
