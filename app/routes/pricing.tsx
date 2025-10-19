@@ -1,7 +1,15 @@
 import { Header, Footer } from 'components';
 
 export function meta() {
-  return [{ title: 'Pricing - Bridgeforth' }];
+  return [
+    { title: 'Pricing & Plans | Bridgeforth' },
+    { name: 'description', content: 'Flexible pricing for clarity sessions, coordination, and full case management. We offer sliding-scale options.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/pricing' },
+    { property: 'og:title', content: 'Pricing & Plans | Bridgeforth' },
+    { property: 'og:description', content: 'Flexible pricing for clarity sessions, coordination, and full case management. We offer sliding-scale options.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 export default function Pricing() {

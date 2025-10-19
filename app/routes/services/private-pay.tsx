@@ -2,8 +2,13 @@ import { Header, Footer, CTABand } from '../../../components';
 
 export function meta() {
   return [
-    { title: 'Private Pay Services - Bridgeforth' },
+    { title: 'Private Pay Case Management | Bridgeforth' },
     { name: 'description', content: 'Personalized private-pay case management: waiver navigation, placement, home-based supports, and monthly oversight.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/services/private-pay' },
+    { property: 'og:title', content: 'Private Pay Case Management | Bridgeforth' },
+    { property: 'og:description', content: 'Personalized private-pay case management: waiver navigation, placement, home-based supports, and monthly oversight.' },
+    { property: 'og:image', content: '/privatepaycasemgt.avif' },
+    { name: 'twitter:card', content: 'summary_large_image' },
   ];
 }
 

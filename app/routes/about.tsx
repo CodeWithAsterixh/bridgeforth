@@ -1,7 +1,15 @@
 import { Header, Footer } from 'components';
 
 export function meta() {
-  return [{ title: 'About - Bridgeforth' }];
+  return [
+    { title: 'About Bridgeforth Consulting Group' },
+    { name: 'description', content: 'Bridgeforth Consulting Group simplifies care coordination and supports families through transitions, benefits, and planning.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/about' },
+    { property: 'og:title', content: 'About Bridgeforth Consulting Group' },
+    { property: 'og:description', content: 'Bridgeforth Consulting Group simplifies care coordination and supports families through transitions, benefits, and planning.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 export default function About() {

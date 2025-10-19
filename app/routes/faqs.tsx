@@ -1,7 +1,15 @@
 import { Header, Footer } from 'components';
 
 export function meta() {
-  return [{ title: 'FAQs - Bridgeforth' }];
+  return [
+    { title: 'FAQs | Bridgeforth' },
+    { name: 'description', content: 'Common questions about getting started, payments, confidentiality, and how Bridgeforth works.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/faqs' },
+    { property: 'og:title', content: 'FAQs | Bridgeforth' },
+    { property: 'og:description', content: 'Common questions about getting started, payments, confidentiality, and how Bridgeforth works.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 const grouped = [

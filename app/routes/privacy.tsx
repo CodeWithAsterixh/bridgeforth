@@ -1,7 +1,15 @@
 import { Header, Footer } from 'components';
 
 export function meta() {
-  return [{ title: 'Privacy Policy - Bridgeforth' }];
+  return [
+    { title: 'Privacy Policy | Bridgeforth' },
+    { name: 'description', content: 'Bridgeforth collects only necessary information to coordinate services and protects personal data. We do not sell your information.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/privacy' },
+    { property: 'og:title', content: 'Privacy Policy | Bridgeforth' },
+    { property: 'og:description', content: 'Bridgeforth collects only necessary information to coordinate services and protects personal data.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 export default function Privacy() {

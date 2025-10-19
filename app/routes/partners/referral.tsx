@@ -4,7 +4,15 @@ import { z } from 'zod';
 import { toast } from 'sonner';
 
 export function meta() {
-  return [{ title: 'Partner Referral - Bridgeforth' }];
+  return [
+    { title: 'Partner Referral | Bridgeforth' },
+    { name: 'description', content: 'Refer a client from your agency to Bridgeforth using our secure referral form. Please ensure you have client consent before submitting.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/partners/referral' },
+    { property: 'og:title', content: 'Partner Referral | Bridgeforth' },
+    { property: 'og:description', content: 'Refer a client from your agency to Bridgeforth using our secure referral form. Please ensure you have client consent before submitting.' },
+    { property: 'og:image', content: '/MedicaidPartnerPathway.avif' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 const phoneRegex = /^\+?[0-9 ()-.]{7,20}$/;

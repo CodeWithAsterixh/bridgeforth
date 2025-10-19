@@ -6,11 +6,14 @@ import { sendMail } from '../../lib/sendMail';
 
 export function meta() {
   return [
-    { title: 'Consultation - Bridgeforth' },
+    { title: 'Book a Free 15-Minute Consultation | Bridgeforth' },
     { name: 'description', content: 'Book a free 15-minute consultation with Bridgeforth to discuss care coordination and next steps.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/consultation' },
     { property: 'og:title', content: 'Book a Free 15-Minute Consultation | Bridgeforth' },
     { property: 'og:description', content: 'Book a free 15-minute consultation with Bridgeforth to discuss care coordination and next steps.' },
+    { property: 'og:image', content: '/hero-background.avif' },
     { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
   ];
 }
 

@@ -2,8 +2,13 @@ import { Header, Footer, CTABand } from '../../../components';
 
 export function meta() {
   return [
-    { title: 'Medicaid Partner Pathway - Bridgeforth' },
-    { name: 'description', content: 'A streamlined referral and coordination pathway for agencies; partner with Bridgeforth for timely intake and updates.' },
+    { title: 'Medicaid Partner Pathway | Bridgeforth' },
+    { name: 'description', content: 'A streamlined referral and coordination pathway for agencies; partner with Bridgeforth for timely intake and consistent updates.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/services/medicaid-partner' },
+    { property: 'og:title', content: 'Medicaid Partner Pathway | Bridgeforth' },
+    { property: 'og:description', content: 'A streamlined referral and coordination pathway for agencies; partner with Bridgeforth for timely intake and consistent updates.' },
+    { property: 'og:image', content: '/MedicaidPartnerPathway.avif' },
+    { name: 'twitter:card', content: 'summary_large_image' },
   ];
 }
 

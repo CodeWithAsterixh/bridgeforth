@@ -1,7 +1,15 @@
 import { Header, Footer } from 'components';
 
 export function meta() {
-  return [{ title: 'How It Works - Bridgeforth' }];
+  return [
+    { title: 'How It Works | Bridgeforth' },
+    { name: 'description', content: 'Our four-step process: discovery, assessment, coordination, and ongoing oversight to get families the help they need.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/how-it-works' },
+    { property: 'og:title', content: 'How It Works | Bridgeforth' },
+    { property: 'og:description', content: 'Our four-step process: discovery, assessment, coordination, and ongoing oversight to get families the help they need.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 export default function HowItWorks() {

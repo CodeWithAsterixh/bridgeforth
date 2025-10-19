@@ -1,7 +1,15 @@
 import { Header, Footer } from 'components';
 
 export function meta() {
-  return [{ title: 'Case Studies - Bridgeforth' }];
+  return [
+    { title: 'Case Studies & Outcomes | Bridgeforth' },
+    { name: 'description', content: 'Short case studies showing how Bridgeforth helped families and agencies with transitions, waivers, and coordination.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/case-studies' },
+    { property: 'og:title', content: 'Case Studies & Outcomes | Bridgeforth' },
+    { property: 'og:description', content: 'Short case studies showing how Bridgeforth helped families and agencies with transitions, waivers, and coordination.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 export default function CaseStudies() {

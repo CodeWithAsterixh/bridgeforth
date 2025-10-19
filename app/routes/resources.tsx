@@ -1,7 +1,15 @@
 import { Header, Footer } from 'components';
 
 export function meta() {
-  return [{ title: 'Resources - Bridgeforth' }];
+  return [
+    { title: 'Resources & Guides | Bridgeforth' },
+    { name: 'description', content: 'Downloadable one-pagers and guides to help families navigate Medicaid, waivers, and hospital-to-home transitions.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/resources' },
+    { property: 'og:title', content: 'Resources & Guides | Bridgeforth' },
+    { property: 'og:description', content: 'Downloadable one-pagers and guides to help families navigate Medicaid, waivers, and hospital-to-home transitions.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 export default function Resources() {

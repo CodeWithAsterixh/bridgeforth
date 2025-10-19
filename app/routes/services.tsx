@@ -3,11 +3,14 @@ import { Link } from 'react-router';
 
 export function meta() {
   return [
-    { title: 'Services - Bridgeforth' },
-    { name: 'description', content: 'Private case management and partner referral services — see Private Pay and Medicaid Partner Pathway.' },
+    { title: 'Services | Bridgeforth' },
+    { name: 'description', content: 'Private case management and partner referral services — explore Private Pay and the Medicaid Partner Pathway.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/services' },
     { property: 'og:title', content: 'Services | Bridgeforth' },
-    { property: 'og:description', content: 'Private case management and partner referral services — see Private Pay and Medicaid Partner Pathway.' },
+    { property: 'og:description', content: 'Private case management and partner referral services — explore Private Pay and the Medicaid Partner Pathway.' },
+    { property: 'og:image', content: '/serviceimage.webp' },
     { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
   ];
 }
 

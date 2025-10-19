@@ -4,7 +4,15 @@ import { z } from 'zod';
 import { toast } from 'sonner';
 
 export function meta() {
-  return [{ title: 'Start Intake - Bridgeforth' }];
+  return [
+    { title: 'Start Intake | Bridgeforth' },
+    { name: 'description', content: 'Begin your intake with Bridgeforth — provide basic details and we will follow up to collect required consents and next steps.' },
+    { rel: 'canonical', href: 'https://bridgeforthcg.com/intake' },
+    { property: 'og:title', content: 'Start Intake | Bridgeforth' },
+    { property: 'og:description', content: 'Begin your intake with Bridgeforth — provide basic details and we will follow up to collect required consents and next steps.' },
+    { property: 'og:image', content: '/hero-background.avif' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ];
 }
 
 const IntakeSchema = z.object({
