@@ -1,4 +1,4 @@
-import { Header, Footer } from "../components";
+import { Header, Footer, InputUI, ButtonUI } from "../components";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -178,84 +178,25 @@ export default function Consultation() {
 
         <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow">
-            <label className="block text-sm">Full name</label>
-            <input
-              disabled={loading}
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none"
-            />
-            {errors.name && (
-              <div className="text-red-600 text-xs mt-1">{errors.name}</div>
-            )}
+            <InputUI label="Full name" name="name" value={form.name} onChange={handleChange} disabled={loading} error={errors.name} />
 
-            <label className="block text-sm mt-3">Phone or email</label>
-            <input
-              disabled={loading}
-              name="contact"
-              value={form.contact}
-              onChange={handleChange}
-              className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none"
-            />
-            {errors.contact && (
-              <div className="text-red-600 text-xs mt-1">{errors.contact}</div>
-            )}
+            <InputUI label="Phone or email" name="contact" value={form.contact} onChange={handleChange} disabled={loading} error={errors.contact} className="mt-3" />
 
-            <label className="block text-sm mt-3">
-              Business / Agency (optional)
-            </label>
-            <input
-              disabled={loading}
-              name="business"
-              value={(form as any).business || ""}
-              onChange={handleChange}
-              className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none"
-            />
+            <InputUI label="Business / Agency (optional)" name="business" value={(form as any).business || ""} onChange={handleChange} disabled={loading} className="mt-3" />
 
-            <label className="block text-sm mt-3">Your role (optional)</label>
-            <input
-              disabled={loading}
-              name="role"
-              value={(form as any).role || ""}
-              onChange={handleChange}
-              className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none"
-            />
+            <InputUI label="Your role (optional)" name="role" value={(form as any).role || ""} onChange={handleChange} disabled={loading} className="mt-3" />
 
-            <label className="block text-sm mt-3">Brief notes</label>
-            <textarea
-              disabled={loading}
-              name="notes"
-              value={form.notes}
-              onChange={handleChange}
-              className="w-full border rounded p-2 mt-1 disabled:opacity-30 disabled:pointer-events-none"
-              rows={4}
-            />
-            {errors.notes && (
-              <div className="text-red-600 text-xs mt-1">{errors.notes}</div>
-            )}
+            <InputUI label="Brief notes" name="notes" textarea rows={4} value={form.notes} onChange={handleChange} disabled={loading} className="mt-3" error={errors.notes} />
 
             <div className="mt-4">
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-[#2563eb] text-white px-4 py-2 rounded flex items-center gap-2 disabled:opacity-30 disabled:pointer-events-none"
-              >
+              <ButtonUI type="submit" disabled={loading} className="flex items-center gap-2 disabled:opacity-30 disabled:pointer-events-none">
                 {loading ? (
                   <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24">
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="white"
-                      strokeWidth="4"
-                      fill="none"
-                      strokeOpacity="0.25"
-                    />
+                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" strokeOpacity="0.25" />
                   </svg>
                 ) : null}
                 <span>{loading ? "Sending..." : "Request Consultation"}</span>
-              </button>
+              </ButtonUI>
             </div>
           </form>
           <div className="bg-gray-50 p-6 rounded">
@@ -318,20 +259,10 @@ export default function Consultation() {
                       }
                     }}
                   >
-                    <label className="block text-sm">Name</label>
-                    <input
-                      name="name"
-                      className="w-full border rounded p-2 mt-1"
-                    />
-                    <label className="block text-sm mt-2">Phone or email</label>
-                    <input
-                      name="contact"
-                      className="w-full border rounded p-2 mt-1"
-                    />
+                    <InputUI name="name" label="Name" />
+                    <InputUI name="contact" label="Phone or email" className="mt-2" />
                     <div className="mt-3">
-                      <button className="bg-blue-600 text-white px-4 py-2 rounded">
-                        Send request
-                      </button>
+                      <ButtonUI className="bg-blue-600 text-white px-4 py-2 rounded">Send request</ButtonUI>
                     </div>
                   </form>
                 </div>

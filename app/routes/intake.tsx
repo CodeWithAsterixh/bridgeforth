@@ -1,4 +1,4 @@
-import { Header, Footer } from '~/components';
+import { Header, Footer, InputUI, ButtonUI } from '~/components';
 import { useState } from 'react';
 import { z } from 'zod';
 import { toast } from 'sonner';
@@ -133,13 +133,9 @@ export default function Intake() {
         <p className="mt-2 text-gray-600">Please provide basic information to help us understand your needs. We will follow up to collect any required consents.</p>
 
         <form onSubmit={handleSubmit} className="mt-6 bg-white p-6 rounded shadow">
-          <label className="block text-sm">Full name</label>
-          <input name="fullName" value={form.fullName} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1 disabled:opacity-30" />
-          {errors.fullName && <div className="text-red-600 text-xs mt-1">{errors.fullName}</div>}
+          <InputUI label="Full name" name="fullName" value={form.fullName} onChange={handleChange} disabled={loading} error={errors.fullName} />
 
-          <label className="block text-sm mt-3">Phone or email</label>
-          <input name="phoneOrEmail" value={form.phoneOrEmail} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1 disabled:opacity-30" />
-          {errors.phoneOrEmail && <div className="text-red-600 text-xs mt-1">{errors.phoneOrEmail}</div>}
+          <InputUI label="Phone or email" name="phoneOrEmail" value={form.phoneOrEmail} onChange={handleChange} disabled={loading} error={errors.phoneOrEmail} className="mt-3" />
 
           <label className="block text-sm mt-3">Payer type</label>
           <select name="payerType" value={form.payerType} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1">
@@ -148,11 +144,9 @@ export default function Intake() {
             <option value="other">Other</option>
           </select>
 
-          <label className="block text-sm mt-3">Location (city, county)</label>
-          <input name="location" value={form.location} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1" />
+          <InputUI label="Location (city, county)" name="location" value={form.location} onChange={handleChange} disabled={loading} className="mt-3" />
 
-          <label className="block text-sm mt-3">Brief needs summary</label>
-          <textarea name="needs" value={form.needs} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1" rows={5} />
+          <InputUI label="Brief needs summary" name="needs" textarea rows={5} value={form.needs} onChange={handleChange} disabled={loading} className="mt-3" />
 
           <label className="mt-3 flex items-center gap-2 text-sm">
             <input type="checkbox" name="consent" checked={form.consent === 'on'} onChange={(e) => setForm((s) => ({ ...s, consent: e.target.checked ? 'on' : '' }))} disabled={loading} />
@@ -161,10 +155,10 @@ export default function Intake() {
           {errors.consent && <div className="text-red-600 text-xs mt-1">{errors.consent}</div>}
 
           <div className="mt-4">
-            <button type="submit" disabled={loading} className="bg-[#2563eb] text-white px-4 py-2 rounded flex items-center gap-2 disabled:opacity-30">
+            <ButtonUI type="submit" disabled={loading} className="flex items-center gap-2 disabled:opacity-30">
               {loading ? <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" strokeOpacity="0.25"/></svg> : null}
               <span>{loading ? 'Submitting...' : 'Submit intake'}</span>
-            </button>
+            </ButtonUI>
           </div>
         </form>
       </main>

@@ -1,4 +1,4 @@
-import { Header, Footer } from '../../components';
+import { Header, Footer, ButtonUI, InputUI } from '../../components';
 import { useState } from 'react';
 import { z } from 'zod';
 import { toast } from 'sonner';
@@ -136,21 +136,13 @@ export default function PartnerReferral() {
         <p className="mt-2 text-gray-600">Use this form to refer a client from your agency. Do not include protected health information unless you have client consent.</p>
 
         <form onSubmit={handleSubmit} className="mt-6 bg-white p-6 rounded shadow">
-          <label className="block text-sm">Agency name</label>
-          <input name="agencyName" value={form.agencyName} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1 disabled:opacity-30" />
-          {errors.agencyName && <div className="text-red-600 text-xs mt-1">{errors.agencyName}</div>}
+          <InputUI label="Agency name" name="agencyName" value={form.agencyName} onChange={handleChange} disabled={loading} error={errors.agencyName} />
 
-          <label className="block text-sm mt-3">Your name</label>
-          <input name="referrerName" value={form.referrerName} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1 disabled:opacity-30" />
-          {errors.referrerName && <div className="text-red-600 text-xs mt-1">{errors.referrerName}</div>}
+          <InputUI label="Your name" name="referrerName" value={form.referrerName} onChange={handleChange} disabled={loading} error={errors.referrerName} className="mt-3" />
 
-          <label className="block text-sm mt-3">Client name</label>
-          <input name="clientName" value={form.clientName} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1 disabled:opacity-30" />
-          {errors.clientName && <div className="text-red-600 text-xs mt-1">{errors.clientName}</div>}
+          <InputUI label="Client name" name="clientName" value={form.clientName} onChange={handleChange} disabled={loading} error={errors.clientName} className="mt-3" />
 
-          <label className="block text-sm mt-3">Contact (phone or email)</label>
-          <input name="contact" value={form.contact} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1 disabled:opacity-30" />
-          {errors.contact && <div className="text-red-600 text-xs mt-1">{errors.contact}</div>}
+          <InputUI label="Contact (phone or email)" name="contact" value={form.contact} onChange={handleChange} disabled={loading} error={errors.contact} className="mt-3" />
 
           <label className="block text-sm mt-3">Urgency</label>
           <select name="urgency" value={form.urgency} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1">
@@ -159,9 +151,7 @@ export default function PartnerReferral() {
             <option value="high">High</option>
           </select>
 
-          <label className="block text-sm mt-3">Notes</label>
-          <textarea name="notes" value={form.notes} onChange={handleChange} disabled={loading} className="w-full border rounded p-2 mt-1" rows={4} />
-          {errors.notes && <div className="text-red-600 text-xs mt-1">{errors.notes}</div>}
+          <InputUI label="Notes" name="notes" textarea rows={4} value={form.notes} onChange={handleChange} disabled={loading} error={errors.notes} className="mt-3" />
 
           <label className="mt-3 flex items-center gap-2 text-sm">
             <input type="checkbox" name="consent" checked={form.consent === 'on'} onChange={(e) => setForm((s) => ({ ...s, consent: e.target.checked ? 'on' : '' }))} disabled={loading} />
@@ -170,10 +160,10 @@ export default function PartnerReferral() {
           {errors.consent && <div className="text-red-600 text-xs mt-1">{errors.consent}</div>}
 
           <div className="mt-4">
-            <button type="submit" disabled={loading} className="bg-[#2563eb] text-white px-4 py-2 rounded flex items-center gap-2 disabled:opacity-30">
+            <ButtonUI type="submit" disabled={loading} className="flex items-center gap-2 disabled:opacity-30">
               {loading ? <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" strokeOpacity="0.25"/></svg> : null}
               <span>{loading ? 'Sending...' : 'Send Referral'}</span>
-            </button>
+            </ButtonUI>
           </div>
         </form>
       </main>
