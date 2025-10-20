@@ -1,4 +1,4 @@
-import { Header, Footer, CTABand } from '../components';
+import { Header, Footer, CTABand, ButtonUI } from '../components';
 import { Link } from 'react-router';
 
 export function meta() {
@@ -61,9 +61,9 @@ export default function Services() {
                   <li>Regular updates and transparent billing</li>
                 </ul>
                 <div className="mt-4">
-                  <button className="bg-gradient-to-r from-blue-600 to-blue-400 text-white px-4 py-2 rounded-md hover:brightness-110 transition">
+                  <ButtonUI className="px-4 py-2 rounded-md">
                     Learn more
-                  </button>
+                  </ButtonUI>
                 </div>
               </Link>
             ))}

@@ -209,8 +209,8 @@ export default function Consultation() {
             <div className="mt-4">
               <div className="hidden md:block">
                 <iframe
-                  src="https://calendly.com/your-calendly/15-min"
-                  title="Book a 15-minute call"
+                  src="https://calendly.com/peterpaultolulope/30-minute-consultation"
+                  title="Book a 30-minute-consultation call"
                   className="w-full h-96 border-0"
                 />
               </div>

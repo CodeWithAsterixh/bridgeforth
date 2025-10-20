@@ -1,4 +1,4 @@
-import { Header, Footer, CTABand } from '../../components';
+import { Header, Footer, CTABand, ButtonUI } from '../../components';
 
 export function meta() {
   return [
@@ -121,8 +121,12 @@ export default function PrivatePay() {
             </div>
 
             <div className="mt-6 flex gap-3">
-              <a href="/pricing" className="bg-white border border-gray-200 px-4 py-2 rounded">See pricing</a>
-              <a href="/intake" className="bg-blue-600 text-white px-4 py-2 rounded">Start intake</a>
+              <a href="/pricing">
+              <ButtonUI variant="secondary" className="px-4 py-2 rounded">See pricing</ButtonUI>
+              </a>
+             <a href="/intake">
+              <ButtonUI className="px-4 py-2 rounded">Start intake</ButtonUI>
+              </a> 
             </div>
           </div>
         </div>

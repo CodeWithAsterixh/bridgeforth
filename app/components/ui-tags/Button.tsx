@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'link';
 type Size = 'sm' | 'md' | 'lg';
@@ -14,15 +15,15 @@ type Props<T extends React.ElementType> = {
 function variantClass(v: Variant) {
   switch (v) {
     case 'primary':
-      return 'bg-blue-600 text-white hover:bg-blue-700';
+      return 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-md';
     case 'secondary':
-      return 'bg-white border text-gray-800 hover:bg-gray-50';
+      return 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border border-gray-300';
     case 'ghost':
       return 'bg-transparent text-gray-800 hover:bg-gray-100';
     case 'link':
-      return 'bg-transparent text-blue-600 underline hover:text-blue-700';
+      return 'bg-transparent text-blue-600 underline';
     default:
-      return 'bg-blue-600 text-white';
+      return 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-md';
   }
 }
 
@@ -41,12 +42,19 @@ function sizeClass(s: Size) {
 export function Button<T extends React.ElementType = 'button'>(props: Props<T>) {
   const { as, variant = 'primary', size = 'md', className = '', children, ...rest } = props;
   const Component: any = as || 'button';
-  const classes = `${variantClass(variant)} ${sizeClass(size)} rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 ${className}`;
+  const base = `${variantClass(variant)} ${sizeClass(size)} cursor-pointer rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 transition-colors duration-200 ${className}`;
 
   return (
-    <Component className={classes} {...rest}>
-      {children}
-    </Component>
+    <motion.div
+      whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(0,0,0,0.15)' }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ type: 'spring', stiffness: 250, damping: 15 }}
+      className="inline-block"
+    >
+      <Component className={base} {...rest}>
+        {children}
+      </Component>
+    </motion.div>
   );
 }
 
