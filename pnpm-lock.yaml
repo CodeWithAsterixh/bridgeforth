@@ -30,8 +30,8 @@ importers:
         specifier: ^12.23.24
         version: 12.23.24(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       nodemailer:
-        specifier: ^7.0.9
-        version: 7.0.9
+        specifier: ^7.0.11
+        version: 7.0.11
       react:
         specifier: ^19.1.1
         version: 19.2.0
